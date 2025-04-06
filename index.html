@@ -11,15 +11,8 @@
       text-align: center;
     }
 
-    .download-btn {
-      padding: 10px 20px;
-      margin: 10px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      font-size: 16px;
-      cursor: pointer;
+    h1 {
+      margin-bottom: 30px;
     }
 
     .menu-icon {
@@ -61,13 +54,54 @@
       color: #000;
     }
 
+    .mod-card {
+      background-color: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin: 20px auto;
+      width: 80%;
+      max-width: 500px;
+      animation: fadeInUp 0.5s ease;
+    }
+
+    .mod-title {
+      font-size: 20px;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .mod-desc {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 15px;
+    }
+
+    .download-btn {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .download-btn:hover {
+      background-color: #45a049;
+      transform: scale(1.05);
+      box-shadow: 0 0 8px #4CAF50;
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateX(100%); }
       to { opacity: 1; transform: translateX(0); }
     }
 
-    h1 {
-      margin-bottom: 30px;
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -93,16 +127,46 @@
       document.getElementById("sideMenu").classList.toggle("show");
     }
 
+    // モッド情報（ここに名前と説明を書けるよ）
+    const mods = [
+      { name: "スピードアップMOD", desc: "プレイヤーが超速で走れるようになります！" },
+      { name: "火を投げるMOD", desc: "火の玉を投げて敵を燃やせるようになります。" },
+      { name: "空を飛べるMOD", desc: "ジャンプで空を飛べるようになるよ！" },
+      { name: "透明化MOD", desc: "完全に透明になってモブからバレない！" },
+      { name: "一撃MOD", desc: "どんな敵も一撃で倒せる最強武器付き！" },
+      { name: "爆発パンチMOD", desc: "パンチすると爆発するヤバいやつ！" },
+      { name: "ゾンビ強化MOD", desc: "ゾンビが速くて強くなる、サバイバル上級者向け！" },
+      { name: "村人バトルMOD", desc: "村人同士がPvPを始めるおもしろMOD。" },
+      { name: "ネザー武器MOD", desc: "ネザー限定の超強い武器が追加される！" },
+      { name: "魔法MOD", desc: "魔法が使えるようになるファンタジーMOD！" }
+    ];
+
     const modButtons = document.getElementById("mod-buttons");
-    for (let i = 1; i <= 10; i++) {
+
+    mods.forEach((mod, i) => {
+      const card = document.createElement("div");
+      card.className = "mod-card";
+
+      const title = document.createElement("div");
+      title.className = "mod-title";
+      title.innerText = mod.name;
+
+      const desc = document.createElement("div");
+      desc.className = "mod-desc";
+      desc.innerText = mod.desc;
+
       const btn = document.createElement("button");
       btn.className = "download-btn";
-      btn.innerText = `モッド${i}をダウンロード`;
+      btn.innerText = "ダウンロード";
       btn.onclick = () => {
-        window.location.href = `mods/mod${i}.zip`;
+        window.location.href = `mods/mod${i + 1}.zip`;
       };
-      modButtons.appendChild(btn);
-    }
+
+      card.appendChild(title);
+      card.appendChild(desc);
+      card.appendChild(btn);
+      modButtons.appendChild(card);
+    });
   </script>
 </body>
 </html>
