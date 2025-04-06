@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ふうチャがネル モッド配布</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f0f0f0;
+      padding: 50px;
+      text-align: center;
+    }
+
+    .download-btn {
+      padding: 10px 20px;
+      margin: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .menu-icon {
+      font-size: 30px;
+      cursor: pointer;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 250px;
+      height: 100%;
+      background: white;
+      box-shadow: -2px 0 5px rgba(0,0,0,0.3);
+      padding: 20px;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .menu.show {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateX(100%); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    h1 {
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="menu-icon" onclick="toggleMenu()">☰</div>
+
+  <h1>ふうチャがネルのモッド配布</h1>
+
+  <div id="mod-buttons">
+    <!-- モッドのダウンロードボタンをここに表示 -->
+  </div>
+
+  <div class="menu" id="sideMenu">
+    <h2>自己紹介</h2>
+    <p>こんにちは！ふうチャがネルのふうがです。<br>
+       Minecraftのモッドを作ってます！<br>
+       気に入ったらぜひチャンネル登録もよろしくね🎮</p>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("sideMenu").classList.toggle("show");
+    }
+
+    // モッドボタンを10個生成
+    const modButtons = document.getElementById("mod-buttons");
+    for (let i = 1; i <= 10; i++) {
+      const btn = document.createElement("button");
+      btn.className = "download-btn";
+      btn.innerText = `モッド${i}をダウンロード`;
+      btn.onclick = () => {
+        window.location.href = `mods/mod${i}.zip`;
+      };
+      modButtons.appendChild(btn);
+    }
+  </script>
+</body>
+</html>
