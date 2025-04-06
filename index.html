@@ -41,10 +41,24 @@
       box-shadow: -2px 0 5px rgba(0,0,0,0.3);
       padding: 20px;
       animation: fadeIn 0.5s ease-in-out;
+      z-index: 1000;
     }
 
     .menu.show {
       display: block;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 20px;
+      cursor: pointer;
+      color: #888;
+    }
+
+    .close-btn:hover {
+      color: #000;
     }
 
     @keyframes fadeIn {
@@ -63,11 +77,10 @@
 
   <h1>ふうチャがネルのモッド配布</h1>
 
-  <div id="mod-buttons">
-    <!-- モッドのダウンロードボタンをここに表示 -->
-  </div>
+  <div id="mod-buttons"></div>
 
   <div class="menu" id="sideMenu">
+    <div class="close-btn" onclick="toggleMenu()">×</div>
     <h2>自己紹介</h2>
     <p>こんにちは！ふうチャがネルのふうがです。<br>
        Minecraftのモッドを作ってます！<br>
@@ -79,7 +92,6 @@
       document.getElementById("sideMenu").classList.toggle("show");
     }
 
-    // モッドボタンを10個生成
     const modButtons = document.getElementById("mod-buttons");
     for (let i = 1; i <= 10; i++) {
       const btn = document.createElement("button");
